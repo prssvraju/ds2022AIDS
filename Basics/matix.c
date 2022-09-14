@@ -1,6 +1,6 @@
 #include<stdio.h>
 int ** readMatrix(int,int);
-void printMatrix(int[][],int,int);
+void printMatrix(int *,int,int);
 int main()
 {
     int n,m,**a;
@@ -8,7 +8,7 @@ int main()
     scanf("%d%d",&m,&n);
     a =readMatrix(m,n);
 
-    printMatrix(a,m,n);
+    printMatrix(&a[0][0],m,n);
 }
 
 int ** readMatrix(int m,int n)
@@ -24,14 +24,14 @@ int ** readMatrix(int m,int n)
     }
     return matrix;
 }
-void printMatrix(int a[10][10],int m,int n)
+void printMatrix(int *a,int m,int n)
 {
     int i,j;
     for(i=0;i<m;i++)
     {
         for(j=0;j<n;j++)
         {
-            printf("%d",a[i][j]);
+            printf("%d",*((a+i*n) + j));
         }
         printf("\n");
     }
