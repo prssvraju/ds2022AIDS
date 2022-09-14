@@ -22,7 +22,5 @@ float addArr(int a[],int n)
     {
         sum=sum+a[i];
     }
-    printf("Sum is %d\n",sum);
-    printf("N value is %d\n",n);
     return sum/n;
 }
