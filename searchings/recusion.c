@@ -1,4 +1,5 @@
 #include<stdio.h>
+//AIDS COde
 int fact(int);
 int main()
 {
