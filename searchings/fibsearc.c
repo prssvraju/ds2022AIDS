@@ -34,18 +34,20 @@ int fibSearch(int a[],int n,int k)
     int flag = 0;
     int index =0;
     printf("low\thigh\tloc\tflag\tindex\tn\n");
-    while(flag!=1 && low<=high)
+    
+    while(low<=high && flag!=1)
     {
-        index=fibK(n);
+        index = fibK(n);
         printf("%d\t%d\t%d\t%d\t%d\t%d\n",low,high,loc,flag,index,n);
-        if(a[index+low]==k)
+        if(k==a[index+low])
         {
-            flag = 1;
-            loc = index + low;
+            loc=index+low;
+            flag=1;
+            break;
         }
         if(k<a[index+low])
         {
-            high=index+low-1;
+            high = index+low-1;
         }
         else
         {
@@ -53,15 +55,15 @@ int fibSearch(int a[],int n,int k)
         }
         n=high-low+1;
     }
-    
-    if(flag == 0)
-    {
-        return -1;
-    }
-    else
+    if(flag == 1)
     {
         return loc;
     }
+    else
+    {
+        return -1;
+    }
+    
 }
 
 int fibK(int n)
