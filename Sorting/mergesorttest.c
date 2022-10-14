@@ -13,7 +13,7 @@ int main()
     }
     mergeSort(arr,0,n);
     printf("Elements after Sorting"); 
-    for(i=0;i<=n;i++)
+    for(i=0;i<n;i++)
     {
         printf("%d \t",arr[i]);
     } 

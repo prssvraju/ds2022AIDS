@@ -1,60 +1,61 @@
-#include<stdio.h>
+#include <stdio.h>
+void quicksort(int[],int,int);
 int partition(int[],int,int);
-void quickSort(int[],int,int);
-int main()
+int main(void) 
 {
-    int n,i;
-    int arr[10];
-    printf("Enter array length");
-    scanf("%d",&n);
-    printf("%d",n);
-    for(i=0;i<n;i++)
-    {
-        scanf("%d",&arr[i]);
-    }
-    arr[i] = 99;
-    quickSort(arr,0,n);
-    printf("Elements after Sorting"); 
-    for(i=0;i<n;i++)
-    {
-        printf("%d \t",arr[i]);
-    } 
-}
-void quickSort(int a[10],int low ,int high)
-{
-    int j;
-	if(low<high)
+	int a[100],i,j,temp,n;
+	printf("enter the value of n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
 	{
-		j=partition(a,low,high+1);
-		quickSort(a,low,j-1);
-		quickSort(a,j+1,high);
+		scanf("%d",&a[i]);
+	}
+  a[i]=999;
+	quicksort(a,0,n);
+	printf("//---after sorting---//\n");
+	for(i=0;i<n;i++)
+		{
+			printf("%d\t-[%d]\t\t",a[i],i);
+		}
+}
+
+void quicksort(int arr[],int p,int q)
+{
+	int j;
+	if(p<q)
+	{
+		j=partition(arr,p,q+1);
+		quicksort(arr,p,j-1);
+		quicksort(arr,j+1,q);
 	}
 }
-int partition(int a[10],int low,int high)
+int partition(int arr[], int fst, int last)
 {
-    int temp,i,j,pivot;
-    pivot = a[low];
-    i=low;
-    j=high;
-    while(i<j)
+//printf("form quick");
+ int i,j,pivot,tmp;
+ 
+  pivot=arr[fst];
+  i=fst;
+  j=last;
+  while (i<j) 
+  {
+    while (arr[i]<=pivot && i<last)
     {
-        while(a[i]<=pivot && i<high)
-        {
-            i++;
-        }
-        while(a[j]>pivot && j>low)
-        {
-            j--;
-        }
-        if(i<j)
-        {
-            temp=a[i];
-            a[i]=a[j];
-            a[j]=temp; 
-        }
+        i++;
     }
-    temp = a[low];
-    a[low] = a[j];
-    a[j] = temp;
-    return j;
+    while(arr[j]>pivot && j>fst)
+    {
+        j--;
+    } 
+    if(i<j)
+    {
+      tmp=arr[i];
+      arr[i]=arr[j];
+      arr[j]=tmp;
+    }
+  }
+  tmp=arr[fst];
+  arr[fst]=arr[j];
+  arr[j]=tmp;
+  return j;
 }
