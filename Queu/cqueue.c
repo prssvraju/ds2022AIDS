@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define MAX 50
+#define MAX 4
 struct  queue
 {
     int items[MAX];
@@ -15,7 +15,7 @@ int main()
     int i;
     int ch,ele;
     struct queue qu;
-    qu.front=0;
+    qu.front=-1;
     qu.rear = -1;
     while(1)
     {
@@ -42,7 +42,7 @@ int main()
             break;
         case 4:
             printf("Peek");
-            peek(&qu);
+            //peek(&qu);
             break;
         case 5:
             printf("Empty");
@@ -53,65 +53,87 @@ int main()
         default:
             break;
         }
-
-
     }
   
     return 0;
 }
+
 void enqueue(struct queue *qu,int element)
 {
-    if(qu->rear == MAX-1)
+    if((qu->front==0 && qu->rear==MAX-1)||(qu->front==qu->rear+1))
     {
         printf("Queue is full");
+        return;
+    }
+    if(qu->front == -1)
+    {
+        qu->front = 0;
+        qu->rear =0;
     }
     else
     {
-        qu->rear = qu->rear+1;
-        qu->items[qu->rear]=element;
+        if(qu->rear == MAX-1)
+        {
+            qu->rear = 0;
+        }
+        else
+        {
+            qu->rear = qu->rear+1;
+        }
     }
+    qu->items[qu->rear]=element;
 }
 
 void dequeue(struct queue *qu)
 {
     int element;
-    if(qu->rear<qu->front)
+    if(qu->front == -1)
     {
       printf("Queue is under flow");   
+      return;
     }
-    else
-    {
-        element = qu->items[qu->front];
-        qu->front++;
-        printf("element remove is %d",element);
-    }
+    element = qu->items[qu->front];
+    printf("element remove is %d",element);
+    if(qu->front==qu->rear)
+	{
+		qu->front=-1;
+		qu->rear=-1;
+	}
+	else
+	{
+		if(qu->front == MAX-1)
+			qu->front=0;
+		else
+			qu->front++;
+	}
+	printf("Element Removed is %d",element);   
 }
-void peek(struct queue *qu)
+void display(struct queue *cqu)
 {
-    int element;
-    if(qu->rear<qu->front)
+      int i;
+    if(cqu->front == -1)
     {
-      printf("Queue is under flow");   
+        printf("Circle queue is empty");
     }
     else
     {
-        element = qu->items[qu->front];
-        printf("peek element is %d",element);
-    }
-}
-void display(struct queue *qu)
-{
-    int i;
-    if(qu->rear<qu->front)
-    {
-      printf("Queue is under flow");   
-    }
-    else
-    {
-        for(i=qu->front;i<=qu->rear;i++)
+        if(cqu->front <= cqu->rear)
         {
-         printf("\n%d indexed value is |%d|",i,qu->items[i]);
+            for(i=cqu->front;i<=cqu->rear;i++)
+            {
+                printf("\n%d indexed element is |%d|",i,cqu->items[i]);
+            }
+        }
+        else
+        {
+            for(i=cqu->front;i<=MAX-1;i++)
+            {
+                printf("\n%d indexed element is |%d|",i,cqu->items[i]);
+            }
+            for(i=0;i<=cqu->rear;i++)
+            {
+                printf("\n%d indexed element is |%d|",i,cqu->items[i]);
+            }
         }
     }
-
 }
