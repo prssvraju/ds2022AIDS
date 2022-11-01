@@ -1,1 +1,1 @@
-k,int low,int hig
+turn sym;
