@@ -8,13 +8,13 @@ struct node
 struct node *getNode();
 struct node *create();
 struct node *insert(struct node *);
-struct node *delete(struct node*);
+struct node *delete (struct node *);
 void traversal(struct node *);
 int main()
 {
     int ch;
     struct node *start;
-    start=create();
+    start = create();
     traversal(start);
     while (1)
     {
@@ -32,7 +32,7 @@ int main()
             traversal(start);
             break;
         case 3:
-            start = delete(start);
+            start = delete (start);
             traversal(start);
             break;
         case 4:
@@ -79,8 +79,8 @@ void traversal(struct node *np)
 }
 struct node *insert(struct node *head)
 {
-    struct node  *newnode,*temp;
-    int ch,pos,i;
+    struct node *newnode, *temp;
+    int ch, pos, i;
     temp = head;
     newnode = getNode();
     printf("\nenter the insert number:");
@@ -96,29 +96,29 @@ struct node *insert(struct node *head)
         return head;
         break;
     case 2:
-        while(temp->next!=NULL)
+        while (temp->next != NULL)
         {
-            temp=temp->next;
+            temp = temp->next;
         }
-        temp->next=newnode;
+        temp->next = newnode;
         return head;
         break;
     case 3:
         printf("\nEnter the position to insert:");
-        scanf("%d",&pos);
-        if(pos==1)
+        scanf("%d", &pos);
+        if (pos == 1)
         {
-            newnode->next=head;
-            head=newnode;
+            newnode->next = head;
+            head = newnode;
             return head;
         }
         else
         {
-            for(i=1;i<pos-1;i++)
+            for (i = 1; i < pos - 1; i++)
             {
-                temp=temp->next;
+                temp = temp->next;
             }
-            newnode->next=temp->next;
+            newnode->next = temp->next;
             temp->next = newnode;
             return head;
         }
@@ -126,52 +126,58 @@ struct node *insert(struct node *head)
         break;
     }
 }
-struct node* delete(struct node* head)
+struct node *delete (struct node *head)
 {
-    struct node *temp,*first;
-    int i,ch;
-    first=head;
-    printf("\n1.at begining\n2. at end\n3. at given position");
-    printf("\nenter your choice:");
-    scanf("%d", &ch);
-    switch (ch)
+    struct node *temp;
+    int i, ch, pos;
+    temp = head;
+    if (head == NULL)
     {
-    case 1:
-        head=head->next;
-        first->next=NULL;
+        printf("\nlist is empty");
         return head;
-        break;
-    case 2:
-        temp=first;
-        int pos;
-        while(temp->next->next!=NULL)
+    }
+    else
+    {
+        printf("\n1.at begining\n2. at end\n3. at given position");
+        printf("\nenter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
         {
-            temp=temp->next;
-        }
-        temp->next=NULL;
-        return head;
-    case 3:
-        temp=first;
-        printf("\nEnter the position to Delete:");
-        scanf("%d",&pos);
-        if(pos == 1)
-        {
-            head=head->next;
-            first->next=NULL;
+        case 1:
+            head = head->next;
+            temp->next = NULL;
             return head;
-        }
-        else
-        {
-            for(i=1;i<pos-1;i++)
+            break;
+        case 2:
+
+            while (temp->next->next != NULL)
             {
-                temp=temp->next;
+                temp = temp->next;
             }
-            temp->next = temp->next->next;
+            temp->next = NULL;
             return head;
+        case 3:
+            printf("\nEnter the position to Delete:");
+            scanf("%d", &pos);
+            if (pos == 1)
+            {
+                head = head->next;
+                temp->next = NULL;
+                return head;
+            }
+            else
+            {
+                for (i = 1; i < pos - 1; i++)
+                {
+                    temp = temp->next;
+                }
+                temp->next = temp->next->next;
+                return head;
+            }
+
+        default:
+
+            break;
         }
-
-    default:    
-
-        break;
     }
 }
