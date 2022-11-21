@@ -38,10 +38,6 @@ struct node * insertPolyNode(struct node* phead,int cof,int exp)
     struct node *temp,*newnode;
     temp=phead;
     newnode = getNode(cof,exp);
-    // newnode=(struct node *)malloc(sizeof(struct node));
-    // newnode->cof=cof;
-    // newnode->exp=exp;
-    // newnode->next = NULL;
     //if head node is null or we are trying to add term with highest exponent it need to add at staring of linke list so we compare exp>temp->exp
     if(temp==NULL||exp>temp->exp) 
     {
