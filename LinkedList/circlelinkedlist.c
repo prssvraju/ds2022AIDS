@@ -152,10 +152,18 @@ nodeptr insert(nodeptr head)
 	}
 }
 
-nodeptr deleteAtBeg(nodeptr firstnode)
+nodeptr deleteAtBeg(nodeptr headnode)
 {
+	nodeptr temp;
+	temp=headnode;
+	if(headnode->next==headnode)
+	{
+		headnode = NULL;
+		return headnode;
+	}
+	else{
 
-    
+	}
 }
 
 nodeptr deleteAtEnd(nodeptr firstnode)
