@@ -17,8 +17,8 @@ nodeptr insertAtPos(nodeptr,nodeptr);
 nodeptr del(nodeptr);
 nodeptr deleteAtBeg(nodeptr);
 nodeptr deleteAtEnd(nodeptr);
-nodeptr deleteBeforElement(nodeptr);
-nodeptr deleteAfterElement(nodeptr);
+nodeptr deleteAtPos(nodeptr);
+
 
 
 void traversal(nodeptr);
@@ -155,106 +155,19 @@ nodeptr insert(nodeptr head)
 nodeptr deleteAtBeg(nodeptr firstnode)
 {
 
-    nodeptr temp1,temp2;
-    temp1 = firstnode;
-    if(firstnode->next==firstnode)
-    {
-        firstnode=NULL;
-        return firstnode;
-    }
-    else
-    {
-        while(temp1->next!=firstnode)
-        {
-            temp1=temp1->next;
-        }
-        
-        temp2=firstnode->next;
-        temp1->next=temp2;
-        firstnode->next=NULL;
-        return temp2;
-    }
+    
 }
 
 nodeptr deleteAtEnd(nodeptr firstnode)
 {
-    nodeptr temp;
-    temp = firstnode;
-
-    if(temp->next==firstnode)
-    {
-        firstnode=NULL;
-        return firstnode;
-    }
-    while(temp->next->next!=firstnode)
-    {
-        temp=temp->next;
-    }      
-    temp->next=firstnode;
-    return firstnode;
-}
-
-nodeptr deleteBeforElement(nodeptr firstnode)
-{
-    int k;
-    nodeptr temp1,temp2;
-    temp1 = firstnode; 
-
-    printf("\nenter the element delete before:");
-    scanf("%d", &k);
-
     
-    if (temp1->data == k)
-    {
-         printf("\nDeletion is not possible");
-    } 
-    else if (temp1->next->data == k)
-    {
-        while (temp1->next != firstnode)
-        {
-            temp1 = temp1->next;
-        }
-            
-        temp1->next = firstnode->next;
-        temp2 = firstnode->next;
-        firstnode->next = NULL;
-        firstnode = temp2;
-    }
-    else
-    {
-        while (temp1->next->data != k)
-        {
-            temp2 = temp1;
-            temp1 = temp1->next;
-        }
-        temp2->next = temp1->next;
-        temp1->next = NULL;
-    }
-    return firstnode;
 }
 
-nodeptr deleteAfterElement(nodeptr firstnode)
+nodeptr deleteAtPos(nodeptr firstnode)
 {
-    int k;
-    nodeptr temp1,temp2;
-    temp1 = firstnode;
- 
-    printf("\nEnter the element delete after:");
-    scanf("%d",&k);
-    while(temp1->data!=k)
-    {
-        temp1=temp1->next;
-    }
-    if(temp1->next==firstnode)
-        printf("\ndeletion is not possible");
-    else
-    {
-        temp2=temp1->next;
-        temp1->next=temp2->next;
-        temp2->next=NULL;
-    }
-    return firstnode;
+    
 }
+
 
 
 nodeptr del( nodeptr p)
@@ -270,7 +183,7 @@ nodeptr del( nodeptr p)
 	}
 	else
 	{
-		printf("\nDelete\n1.at begining\n2.at end\n3.delete before\n4.delete after");
+		printf("\nDelete\n1.at begining\n2.at end\n3.delete At Positon\n");
 		printf("\nEnter your choice:");
 		scanf("%d",&c);
 		switch(c)
@@ -279,9 +192,7 @@ nodeptr del( nodeptr p)
 				   break;
 			case 2:return(deleteAtEnd(firstnode));
 				   break;
-			case 3:return(deleteBeforElement(firstnode));
-				   break;
-			case 4:return(deleteAfterElement(firstnode));
+			case 3:return(deleteAtPos(firstnode));
 				   break;
 		  }
 	}
