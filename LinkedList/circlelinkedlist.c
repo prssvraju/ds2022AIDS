@@ -162,6 +162,13 @@ nodeptr deleteAtBeg(nodeptr headnode)
 		return headnode;
 	}
 	else{
+		while(temp->next!=headnode)
+        {
+            headnode=temp->next;
+        }
+		temp->next->next=temp->next;
+		headnode =temp->next;
+		return headnode;
 
 	}
 }
