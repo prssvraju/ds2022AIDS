@@ -31,6 +31,7 @@ struct node* getNode(int c,int e)
     pnp->cof=c;
     pnp->exp=e;
     pnp->next = NULL;
+    return pnp;
 
 }
 struct node * insertPolyNode(struct node* phead,int cof,int exp)
