@@ -92,6 +92,7 @@ nodeptr getnode()
 }
 void display(nodeptr start)
 {
+    
     nodeptr temp;
     temp = start;
     printf("\nrow\tcolumn\tvalue\n");
