@@ -90,6 +90,8 @@ struct node* polyAdd(struct node *ph1,struct node *ph2)
     // return h3;
 
 
+
+
     struct node* ptr1=ph1;
     struct node* ptr2=ph2;
     struct node* head3 = NULL;
