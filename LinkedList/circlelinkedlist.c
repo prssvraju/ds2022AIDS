@@ -154,32 +154,67 @@ nodeptr insert(nodeptr head)
 
 nodeptr deleteAtBeg(nodeptr headnode)
 {
-	nodeptr temp;
-	temp=headnode;
-	if(headnode->next==headnode)
-	{
-		headnode = NULL;
-		return headnode;
-	}
-	else{
-		while(temp->next!=headnode)
+	nodeptr temp1,temp2;
+    temp1 = headnode;
+    if(headnode->next==headnode)
+    {
+        headnode=NULL;
+        return headnode;
+    }
+    else
+    {
+        while(temp1->next!=headnode)
         {
-            headnode=temp->next;
+            temp1=temp1->next;
         }
-		temp->next->next=temp->next;
-		headnode =temp->next;
-		return headnode;
+        
+        temp2=headnode->next;
+        temp1->next=temp2;
+        headnode->next=NULL;
+        return temp2;
+    }
+}
 
+nodeptr deleteAtEnd(nodeptr headnode)
+{
+    nodeptr temp;
+    temp = headnode;
+
+    if(temp->next==headnode)
+    {
+        headnode=NULL;
+        return headnode;
+    }
+    while(temp->next->next!=headnode)
+    {
+        temp=temp->next;
+    }      
+    temp->next=headnode;
+    return headnode;
+}
+
+nodeptr deleteAtPos(nodeptr headnode)
+{
+	int i,pos;
+	nodeptr temp;
+	temp= headnode;
+	printf("enter position");
+	scanf("%d",&pos);
+	if(pos==1)
+	{
+		return deleteAtBeg(headnode);
 	}
-}
+	else
+	{
+		for(i=1;i<pos-1;i++)
+		{
+			temp=temp->next;
 
-nodeptr deleteAtEnd(nodeptr firstnode)
-{
-    
-}
+		}
+		temp->next=temp->next->next;
+	}
+	return headnode;
 
-nodeptr deleteAtPos(nodeptr firstnode)
-{
     
 }
 
@@ -217,11 +252,19 @@ void traversal(nodeptr head)
 {
 	nodeptr temp;
 	temp=head;
-	printf("\nelements are:\n");
-	while(temp->next!=head)
+	if(head == NULL)
 	{
-		printf("%d-->",temp->data);
-		temp=temp->next;
+		printf("\nelements are NOT there to display:\n");
 	}
-	printf("%d",temp->data);
+	else
+	{
+		printf("\nelements are:\n");
+		while(temp->next!=head)
+		{
+			printf("%d-->",temp->data);
+			temp=temp->next;
+		}
+		printf("%d",temp->data);
+	}
+	
 }
