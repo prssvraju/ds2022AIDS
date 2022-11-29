@@ -202,6 +202,8 @@ void deleteAtPos()
 {
     int k,i;
     nodeptr temp;
+    nodeptr temp2,temp3;
+
     printf("\nenter the position to delete:");
     scanf("%d",&k);
     if(k==1)
@@ -211,7 +213,8 @@ void deleteAtPos()
     else
     {
         temp=first;
-        for(i=1;i<k-1;i++)
+        // Move up to postion we are supposed to delete so we need to write K insted of k-1
+        for(i=1;i<k;i++)
         {
             temp=temp->next;
         }
@@ -221,7 +224,21 @@ void deleteAtPos()
         }
         else
         {
-            
+            //make a copy of temp->next and temp->prev in two diffent pointers
+            //now assign temp->prev->next value with temp->next(new temp2 pointer variable)
+            //assign temp->next->prev value with temp->prev(new temp3 pointer variable)
+            // temp->prev->next = temp->next;
+            // temp->next->prev =temp->prev;
+            // temp->next = NULL;
+            // temp->prev = NULL;    
+
+            temp2 = temp->prev;
+            temp3 = temp->next;
+            temp2->next = temp3;
+            temp3->prev = temp2;
+            temp->prev = NULL;
+            temp->next = NULL;
+
         }
 
     }
