@@ -57,7 +57,7 @@ struct node* polyMul(struct node *ph1,struct node *ph2)
     struct node *tph1,*tph2;
     struct node *pos =NULL,*sop=NULL;
     int c,e;
-    tph1=ph1;
+    tph1=ph1; 
     while(tph1!=NULL)
     {
         tph2=ph2;

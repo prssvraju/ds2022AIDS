@@ -65,6 +65,7 @@ nodeptr insertAtBeg(nodeptr headnode,nodeptr newnode)
 {
     nodeptr temp;
     temp=headnode;
+
     while(temp->next!=headnode)
     {
         temp=temp->next;
@@ -98,14 +99,15 @@ nodeptr insertAtPos(nodeptr headnode,nodeptr newnode)
     scanf("%d",&pos);
     if(pos==1)
     {
-        while(temp->next!=headnode)
-        {
-            temp=temp->next;
-        }
-        newnode->next=headnode;
-        temp->next = newnode;
-        headnode=newnode;
-        return headnode;
+        // while(temp->next!=headnode)
+        // {
+        //     temp=temp->next;
+        // }
+        // newnode->next=headnode;
+        // temp->next = newnode;
+		// headnode=newnode;
+        // return headnode;
+		return insertAtBeg(headnode,newnode);
     }
     else
     {
