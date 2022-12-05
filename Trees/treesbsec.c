@@ -18,6 +18,7 @@ main()
     int ch;
     root =NULL;
     root=create(root);
+    
     while(1)
     {
         printf("\n*************\n\n\tMENU\n"); 
@@ -53,43 +54,54 @@ nodeptr getNode()
 nodeptr create(nodeptr root)
 {
     nodeptr newnode;
-    newnode = getNode();
-    printf("\nEnter at end -9\n");
-    printf("\nEnter the number:"); 
-    scanf("%d",&newnode->data);
-    while (newnode->data!=-9)
+    newnode=getNode();
+   printf("enter value except -9");
+   scanf("%d",&newnode->data);
+   while(newnode->data!=-9)
+   {
+    if(root==NULL)
     {
-        if(root == NULL)
-        {
-            root = newnode;
-        }
-        else
-        {
-            //printf("\n Visiting Order");
-            insert(root,newnode);
-            newnode = getNode();
-            printf("\nEnter the number:"); 
-            scanf("%d",&newnode->data);
-        }
+        root=newnode;
     }
-    return root;    
+    else
+    {
+        insert(root,newnode);
+        newnode=getNode();
+        printf("enter value except -9");
+        scanf("%d",&newnode->data);
+
+    }
+
+   }
+   return root;
 }
 void insert(nodeptr root, nodeptr newnode)
 {
-    //printf("%d\t",root->data);
-    if (newnode->data < root->data) {
-      if (root->left == NULL)
-         root->left = newnode;
-      else
-         insert(root->left, newnode);
-   }
+ if(newnode->data<root->data)
+ {
+    if(root->left==NULL)
+    {
+        root->left=newnode;
 
-   if (newnode->data > root->data) {
-      if (root->right == NULL)
-         root->right = newnode;
-      else
-         insert(root->right, newnode);
-   }
+    }
+    else
+    {
+        insert(root->left,newnode);
+
+    }
+ }
+ if(newnode->data>root->data)
+ {
+    if(root->right==NULL)
+    {
+        root->right=newnode;
+    }
+    else
+    {
+        insert(root->right,newnode);
+
+    }
+ }
 }
 
 
