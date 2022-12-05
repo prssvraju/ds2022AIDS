@@ -198,12 +198,12 @@ void twochilds(nodeptr parent, nodeptr p)
 	k=p->info;
 	p->info=temp->info;
 	temp->info=k;
-	if(p->right==temp)
-		del1(p,temp);
-	else
-		del(p->right, temp->info);
+	// if(p->right==temp)
+	// 	del1(p,temp);
+	// else
+	// 	del(p->right, temp->info);
 
-	//del(parent->right, temp->info);
+	del(parent->right, temp->info);
 }
 nodeptr findMaxOfRight(nodeptr p)
 {
