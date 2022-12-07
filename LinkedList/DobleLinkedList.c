@@ -100,7 +100,7 @@ void traversal()
 	p1=last;
 	while(p1!=NULL)
 	{
-	      printf("<--%d",p1->info);
+	      printf("%d-->",p1->info);
 	      p1=p1->prev;
 	}
 
